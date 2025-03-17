@@ -1,7 +1,9 @@
 import { ICourseDto } from "../models/course";
 import { api } from "./api";
 
+//general calss contains functions that use in redux
 export class Course {
+  //function to get courses
   static async getCourse(): Promise<ICourseDto[]> {
     return await api
       .get("/courses")
@@ -14,6 +16,7 @@ export class Course {
         throw error;
       });
   }
+  //function to add courses
 
   static async addCourse(values: ICourseDto): Promise<ICourseDto> {
     return await api
@@ -26,6 +29,7 @@ export class Course {
         throw error;
       });
   }
+  //function to delete courses
 
   static async deleteCourse(id: number): Promise<void> {
     return await api

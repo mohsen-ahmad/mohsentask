@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
-import { clearMessage, getCourses } from '../store/actionsCreator';
-import { ICourseDto } from '../models/course';
-import { BiPlus } from 'react-icons/bi';
-import { RiDeleteBin6Line } from 'react-icons/ri';
-import AddModal from '../pages/addModal';
-import DeleteModal from '../pages/deleteModal';
-import MoreModal from '../pages/moreModal';
-import Loader from '../loader/spinner';
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { clearMessage, getCourses } from "../store/actionsCreator";
+import { ICourseDto } from "../models/course";
+import { BiPlus } from "react-icons/bi";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import AddModal from "../pages/addModal";
+import DeleteModal from "../pages/deleteModal";
+import MoreModal from "../pages/moreModal";
+import Loader from "../loader/spinner";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { courses, loading, error, message, searchQuery } = useSelector((state: any) => state.course);
+  const { courses, loading, error, message, searchQuery } = useSelector(
+    (state: any) => state.course
+  );
   const [showAddModal, setShowAddModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showMoreModal, setShowMoreModal] = useState(false);
@@ -21,6 +23,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getCourses());
+    //taost
     if (message) {
       if (message.includes("success")) {
         toast.success(message);
@@ -35,7 +38,7 @@ const Home = () => {
   const filteredCourses = courses.filter((course: ICourseDto) =>
     course.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
-
+  //modal functions
   const handleShowAddModal = () => setShowAddModal(true);
   const handleCloseAddModal = () => setShowAddModal(false);
 
@@ -58,11 +61,11 @@ const Home = () => {
     setSelectedDescription("");
     setShowMoreModal(false);
   };
-
+  //loader
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
-      <Loader/>
+        <Loader />
       </div>
     );
   }
@@ -84,9 +87,7 @@ const Home = () => {
       </div>
 
       {filteredCourses.length === 0 ? (
-        <div className="text-center text-red-500 text-xl">
-          No courses found
-        </div>
+        <div className="text-center text-red-500 text-xl">No courses found</div>
       ) : (
         <div className="row">
           {filteredCourses.map((item: ICourseDto) => {
@@ -132,12 +133,19 @@ const Home = () => {
         </div>
       )}
 
-      <AddModal show={showAddModal} handleClose={handleCloseAddModal} courses={courses} />
+      {/* modal add course */}
+      <AddModal
+        show={showAddModal}
+        handleClose={handleCloseAddModal}
+        courses={courses}
+      />
+      {/* modal delete course */}
       <DeleteModal
         show={showDeleteModal}
         handleClose={handleCloseDeleteModal}
         courseId={selectedCourseId}
       />
+      {/* modal raed more description */}
       <MoreModal
         show={showMoreModal}
         handleClose={handleCloseMoreModal}

@@ -1,14 +1,14 @@
-import { useState, useRef } from "react"; // Import useRef
+import { useState, useRef } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addCourse } from "../store/actionsCreator";
 import { ICourseDto } from "../models/course";
 
 const AddModal: React.FC<any> = ({ show, handleClose, courses }) => {
-  const [validated, setValidated] = useState(false); // State to track form validation
+  const [validated, setValidated] = useState(false);
   const dispatch = useDispatch();
-  const formRef = useRef<HTMLFormElement>(null); // Create a ref for the form
-
+  const formRef = useRef<HTMLFormElement>(null);
+  //handel form submit
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -19,8 +19,9 @@ const AddModal: React.FC<any> = ({ show, handleClose, courses }) => {
       const formData = new FormData(form);
       const formValues = Object.fromEntries(formData.entries());
 
+      //infrormation to add course from form
       const newCourse: ICourseDto = {
-        id: (courses.length + 1).toString(), // Generate an incremental ID
+        id: (courses.length + 1).toString(),
         title: formValues.title as string,
         description: formValues.description as string,
         instructor: formValues.instructor as string,
@@ -37,10 +38,13 @@ const AddModal: React.FC<any> = ({ show, handleClose, courses }) => {
   // Reset the form when the modal is closed
   const handleModalClose = () => {
     if (formRef.current) {
-      formRef.current.reset(); // Reset the form fields
-      setValidated(false); // Reset validation state
+      // Reset the form fields
+      formRef.current.reset();
+      // Reset validation state
+      setValidated(false);
     }
-    handleClose(); // Close the modal
+    // Close the modal
+    handleClose();
   };
 
   return (
@@ -54,7 +58,7 @@ const AddModal: React.FC<any> = ({ show, handleClose, courses }) => {
             noValidate
             validated={validated}
             onSubmit={handleSubmit}
-            ref={formRef} // Attach the ref to the form
+            ref={formRef}
           >
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title Course</Form.Label>

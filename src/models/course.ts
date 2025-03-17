@@ -1,3 +1,4 @@
+//type of information  courses
 export interface ICourseDto{
     id:any,
     title:string,

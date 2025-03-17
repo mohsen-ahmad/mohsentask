@@ -5,6 +5,7 @@ import { searchCourse } from "../store/actionsCreator";
 
 const Header = () => {
   const dispatch = useDispatch();
+  //search handel
   const searchQuery = useSelector((state: any) => state.searchQuery);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {

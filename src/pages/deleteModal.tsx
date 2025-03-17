@@ -10,8 +10,9 @@ interface DeleteModalProps {
 
 const DeleteModal: React.FC<DeleteModalProps> = ({ show, handleClose, courseId }) => {
     const dispatch=useDispatch();
+    //handel delete course by id 
   const handleDelete = () => {
-    console.log("Deleting course with ID:", courseId);
+    // console.log("Deleting course with ID:", courseId);
     dispatch(deleteCourse(courseId))
     handleClose(); 
   };
