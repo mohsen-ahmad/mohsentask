@@ -6,16 +6,16 @@ Follow these steps to set up and run the application locally on your machine.
 
 git clone https://github.com/mohsen-ahmad/mohsentask.git
 
-### 2. Cd folder task
+### 2. open folder mohsentask in vscode
 
-### 3. excute this:
+### 3. execute this:
 
     npm install
 
-### 4. excute this:
+### 4. execute this:
 
 json-server --watch data.json --port 3002
 
-### 5. excute this:
+### 5. execute this:
 
 npm run dev or npm start
