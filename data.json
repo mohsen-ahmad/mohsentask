@@ -1,0 +1,25 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "Introduction to React",
+      "description": "Learn the basics of React and build your first application.",
+      "instructor": "John Doe",
+      "duration": "4 hours"
+    },
+    {
+      "id": "2",
+      "title": "Advanced JavaScript",
+      "description": "Deep dive into advanced JavaScript concepts.",
+      "instructor": "Jane Smith",
+      "duration": "6 hours"
+    },
+    {
+      "id": "1742199834677",
+      "title": "v",
+      "description": "vv",
+      "instructor": "vv",
+      "duration": "vv"
+    }
+  ]
+}
