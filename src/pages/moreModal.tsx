@@ -20,9 +20,10 @@ const MoreModal = ({ show, handleClose, description }: MoreModalProps) => {
       </Modal.Header>
       <Modal.Body
         style={{
-          overflowX: "hidden", // Hide horizontal overflow
-          overflowY: "auto", // Enable vertical scrolling
-          maxHeight: "60vh", // Optional: Limit the height of the modal body
+          overflowX: "hidden",
+          overflowY: "auto", 
+          maxHeight: "60vh", 
+          wordBreak:"break-all"
         }}
       >
         <p>{description}</p>

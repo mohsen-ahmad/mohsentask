@@ -22,3 +22,8 @@ height: 20px;
 .btn-border{
     border-radius: 15px ;
 }
+.modal-footer{
+    display: flex;
+    justify-content: space-between !important;
+    align-items: center;
+}

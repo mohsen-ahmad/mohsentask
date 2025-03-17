@@ -1,60 +1,67 @@
-import { useState } from "react";
+import { useState, useRef } from "react"; // Import useRef
 import { Button, Form, Modal } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { addCourse } from "../store/actionsCreator";
 import { ICourseDto } from "../models/course";
 
-interface AddModalProps {
-  show: boolean;
-  handleClose: () => void;
-}
-
-const AddModal: React.FC<AddModalProps> = ({ show, handleClose }) => {
+const AddModal: React.FC<any> = ({ show, handleClose, courses }) => {
   const [validated, setValidated] = useState(false); // State to track form validation
   const dispatch = useDispatch();
+  const formRef = useRef<HTMLFormElement>(null); // Create a ref for the form
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); // منع إعادة تحميل الصفحة
+    event.preventDefault();
     const form = event.currentTarget;
 
     if (form.checkValidity() === false) {
-      event.stopPropagation(); 
+      event.stopPropagation();
     } else {
       const formData = new FormData(form);
-      const formValues = Object.fromEntries(formData.entries()); 
+      const formValues = Object.fromEntries(formData.entries());
 
       const newCourse: ICourseDto = {
-        id: Date.now().toString(),
+        id: (courses.length + 1).toString(), // Generate an incremental ID
         title: formValues.title as string,
         description: formValues.description as string,
         instructor: formValues.instructor as string,
         duration: formValues.duration as string,
       };
 
-      console.log("New Course:", newCourse);
-
       dispatch(addCourse(newCourse));
-
-      handleClose(); 
+      handleClose();
     }
 
-    setValidated(true); // تعيين النموذج كـ "تم التحقق منه"
+    setValidated(true);
+  };
+
+  // Reset the form when the modal is closed
+  const handleModalClose = () => {
+    if (formRef.current) {
+      formRef.current.reset(); // Reset the form fields
+      setValidated(false); // Reset validation state
+    }
+    handleClose(); // Close the modal
   };
 
   return (
     <div>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Course</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form noValidate validated={validated} onSubmit={handleSubmit}>
+          <Form
+            noValidate
+            validated={validated}
+            onSubmit={handleSubmit}
+            ref={formRef} // Attach the ref to the form
+          >
             <Form.Group className="mb-3" controlId="title">
               <Form.Label>Title Course</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Input course title"
-                name="title" // إضافة name للحقل
+                placeholder="Course title"
+                name="title"
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -65,8 +72,8 @@ const AddModal: React.FC<AddModalProps> = ({ show, handleClose }) => {
               <Form.Label>Description</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Input course description"
-                name="description" // إضافة name للحقل
+                placeholder="Course description"
+                name="description"
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -77,8 +84,8 @@ const AddModal: React.FC<AddModalProps> = ({ show, handleClose }) => {
               <Form.Label>Instructor</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Input course instructor"
-                name="instructor" // إضافة name للحقل
+                placeholder="Course instructor"
+                name="instructor"
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -90,7 +97,7 @@ const AddModal: React.FC<AddModalProps> = ({ show, handleClose }) => {
               <Form.Control
                 type="text"
                 placeholder="Example: 6 hours"
-                name="duration" // إضافة name للحقل
+                name="duration"
                 required
               />
               <Form.Control.Feedback type="invalid">
@@ -98,7 +105,7 @@ const AddModal: React.FC<AddModalProps> = ({ show, handleClose }) => {
               </Form.Control.Feedback>
             </Form.Group>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
+              <Button variant="secondary" onClick={handleModalClose}>
                 Close
               </Button>
               <Button variant="primary" type="submit">

@@ -11,36 +11,30 @@ export class Course {
       })
       .catch(function (error) {
         // console.log(error);
-        throw error; 
+        throw error;
       });
   }
 
   static async addCourse(values: ICourseDto): Promise<ICourseDto> {
-    console.log("Adding Course:", values);
-
     return await api
-      .post("/courses", values) 
+      .post("/courses", values)
       .then(function (response) {
         console.log("Course Added:", response.data);
         return response.data;
       })
       .catch(function (error) {
-        console.error("Error Adding Course:", error);
-        throw error; 
+        throw error;
       });
   }
 
   static async deleteCourse(id: number): Promise<void> {
-    console.log("Deleting Course with ID:", id);
-
     return await api
-      .delete(`/courses/${id}`) 
+      .delete(`/courses/${id}`)
       .then(function (response) {
-        console.log("Course Deleted:", response.data);
         return response.data;
       })
       .catch(function (error) {
-        console.error("Error Deleting Course:", error);
+        console.error("Error Delete:", error);
         throw error;
       });
   }

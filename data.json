@@ -2,24 +2,31 @@
   "courses": [
     {
       "id": "1",
-      "title": "Introduction to React",
-      "description": "Learn the basics of React and build your first application.",
-      "instructor": "John Doe",
-      "duration": "4 hours"
+      "title": " React js ",
+      "description": "React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started",
+      "instructor": "Mohsen Ahmad",
+      "duration": "6"
     },
     {
       "id": "2",
-      "title": "Advanced JavaScript",
-      "description": "Deep dive into advanced JavaScript concepts.",
-      "instructor": "Jane Smith",
-      "duration": "6 hours"
+      "title": " JavaScript",
+      "description": "JavaScript (JS) is a lightweight interpreted (or just-in-time compiled) programming language with first-class functions. While it is most well-known as the scripting language for Web pages, many non-browser environments also use it, such as Node.js, Apache CouchDB and Adobe Acrobat. JavaScript is a prototype-based, multi-paradigm, single-threaded, dynamic language, supporting object-oriented, imperative, and declarative (e.g. functional programming) styles.",
+      "instructor": "oasam zero",
+      "duration": "18 "
     },
     {
-      "id": "1742199834677",
-      "title": "v",
-      "description": "vv",
-      "instructor": "vv",
-      "duration": "vv"
+      "id": "3",
+      "title": "css",
+      "description": "css is styles in front ",
+      "instructor": "oasma al zero",
+      "duration": "11"
+    },
+    {
+      "id": "4",
+      "title": "html3",
+      "description": "html is based in web ",
+      "instructor": "alzero",
+      "duration": "5"
     }
   ]
 }

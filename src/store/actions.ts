@@ -17,3 +17,6 @@ export const DELETE_COURSE_FAILURE = 'DELETE_COURSE_FAILURE';
 
 //actions search 
 export const SEARCH_COURSE = 'SEARCH_COURSE';
+
+export const CLEAR_MESSAGE = 'CLEAR_MESSAGE';
+
