@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { clearMessage, getCourses } from '../store/actionsCreator';
 import { ICourseDto } from '../models/course';
-import { Spinner } from 'react-bootstrap';
 import { BiPlus } from 'react-icons/bi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import AddModal from '../pages/addModal';
 import DeleteModal from '../pages/deleteModal';
 import MoreModal from '../pages/moreModal';
+import Loader from '../loader/spinner';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -62,9 +62,7 @@ const Home = () => {
   if (loading) {
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </Spinner>
+      <Loader/>
       </div>
     );
   }
@@ -85,7 +83,6 @@ const Home = () => {
         </button>
       </div>
 
-      {/* Display "Not Found" message if no courses match the search query */}
       {filteredCourses.length === 0 ? (
         <div className="text-center text-red-500 text-xl">
           No courses found
